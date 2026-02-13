@@ -1,98 +1,128 @@
-AI UI Generator
+🚀 AI UI Generator
 
-An AI-powered UI generator built with React + Vite + TypeScript that converts natural language prompts into structured UI components with live preview, versioning, rollback, and incremental refinement.
+An AI-powered web application that generates React UI code from natural language prompts.
+The project uses a full-stack architecture with a React frontend and an Express backend connected to a Large Language Model (LLM).
 
 ✨ Features
 
-Prompt-based UI generation
-Describe a UI in plain English and generate React components.
+🔤 Generate React UI components from plain English prompts
 
-Typed UI schema
-AI output is parsed into a strongly typed component tree before rendering.
+🧠 AI-powered backend using an LLM (via Groq API)
 
-Live Preview
-Generated UIs are rendered immediately with runtime safety checks.
+🧩 Live code preview and generation history
 
-Version Snapshots
-Each generation creates an immutable snapshot containing:
+⏪ Snapshot-based rollback system
 
-prompt
+🌐 Fully deployed (Frontend + Backend)
 
-generated code
+🔐 Secure API key handling (no keys exposed in frontend)
 
-UI plan
-
-timestamp
-
-Rollback & Iteration
-Users can roll back to any previous snapshot.
-Future generations build on the selected snapshot, enabling true incremental edits.
-
-Graceful error handling
-API failures (e.g. rate limits) do not crash the UI and are clearly communicated.
-
-🧠 How It Works
-
-User enters a UI description
-
-The app calls an AI planner to generate a UI plan
-
-The plan is validated and converted into typed components
-
-A snapshot is stored in generation history
-
-Users can roll back to any snapshot and continue iterating
-
-Each generation is aware of the currently active snapshot, enabling iterative refinement instead of full rewrites.
-
-🏗️ Architecture Overview
-Frontend (React + Vite)
-│
-├─ Prompt Input
-├─ AI Agent Orchestrator
-│   ├─ Planner
-│   ├─ Generator
-│   └─ Explainer
-│
-├─ Snapshot History (immutable)
-├─ Rollback Logic
-└─ Live Preview Renderer (type-safe)
-
-🛠️ Tech Stack
+🏗️ Tech Stack
+Frontend
 
 React
 
-Vite
-
 TypeScript
 
-OpenAI API
+Vite
 
-CSS (no UI frameworks)
+Axios / Fetch (for API communication)
 
-🚀 Getting Started
-Install dependencies
+Backend
+
+Node.js
+
+Express
+
+Groq LLM API
+
+Deployment
+
+Frontend: Railway
+
+Backend: Railway
+
+📁 Project Structure
+ai-ui-generator-stack
+├── ai-ui-generator   # Frontend (React + Vite)
+└── server            # Backend (Express API)
+
+⚙️ How It Works
+
+The user enters a UI description (e.g., “Create a navbar with Home and About buttons”).
+
+The frontend sends the prompt to the backend API.
+
+The backend forwards the prompt to the LLM.
+
+The LLM generates React UI code.
+
+The frontend displays the generated code and preview.
+
+🌍 Live Deployment
+
+Frontend: Deployed on Railway
+
+Backend API: Deployed on Railway
+
+The backend is API-only, so opening the backend URL directly may show
+Cannot GET / — this is expected behavior.
+
+🛠️ Local Development
+1️⃣ Clone the repository
+git clone https://github.com/your-username/ai-ui-generator-final.git
+cd ai-ui-generator-final
+
+2️⃣ Setup Backend
+cd server
 npm install
 
-Run locally
+
+Create a .env file:
+
+GROQ_API_KEY=your_api_key_here
+
+
+Start the backend:
+
+npm start
+
+
+Backend runs on:
+
+http://localhost:3001
+
+3️⃣ Setup Frontend
+cd ../ai-ui-generator
+npm install
 npm run dev
 
-⚠️ API Usage Note
 
-OpenAI API calls are made client-side for demo purposes.
+Frontend runs on:
 
-Rate limits (HTTP 429) may occur
+http://localhost:5173
 
-Errors are handled gracefully in the UI
+🧪 Example Prompts
+Create a navbar with title "My App" and buttons Home, About, Contact
 
-In a production system, API calls should be proxied through a backend to protect the API key and enforce rate limiting
+Create a login page with email and password inputs and a submit button
 
-📌 Design Decisions
+Create a dashboard layout with a sidebar and main content area
 
-Frontend-only architecture for simplicity and clarity
+🔐 Security Notes
 
-No UI frameworks to keep styling lightweight and readable
+API keys are stored only on the backend
 
-Explicit rollback semantics instead of implicit version switching
+No secrets are exposed to the client
 
-Type-safe rendering to prevent invalid AI output from crashing the app
+Environment variables are used for production deployment
+
+🧠 Learnings
+
+Handling AI API integrations securely
+
+Deploying a monorepo with multiple services
+
+Debugging real-world production build issues
+
+Managing frontend–backend communication in production
