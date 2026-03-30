@@ -127,5 +127,5 @@ Debugging real-world production build issues
 
 Managing frontend–backend communication in production
 
-Shreyak
+Shreyak Malik
 
